@@ -24,16 +24,9 @@
   </li><!-- End Dashboard Nav -->
 
   <li class="nav-item">
-    <a class="nav-link " href="messages.php">
+    <a class="nav-link " href="message.php">
       <i class="bi bi-grid"></i>
       <span>messages</span>
-    </a>
-  </li><!-- End Dashboard Nav -->
-
-  <li class="nav-item">
-    <a class="nav-link " href="skills.php">
-      <i class="bi bi-grid"></i>
-      <span>skills</span>
     </a>
   </li><!-- End Dashboard Nav -->
 

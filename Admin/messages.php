@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>project</title>
+  <title>messages</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -53,7 +53,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <!-- <li class="breadcrumb-item">Pages</li> -->
-          <li class="breadcrumb-item active">project</li>
+          <li class="breadcrumb-item active">message</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -67,10 +67,6 @@
         
 
 
-              <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#disabledAnimation">
-                add project
-              </button>
-              <br>
        
               <div class="col-12">
                 <br>
@@ -79,60 +75,29 @@
                     <!-- Disabled Animation Modal -->
              
 
-                    <!-- id
-category
-project_date
-url
-picture
-description -->
-
+              
               <div class="modal" id="disabledAnimation" tabindex="-1">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">ADD PROJECT</h5>
+                      <h5 class="modal-title">ADD SKILLS</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <form class="row g-3" method='post' action='project.php'>
-                
+                    <form class="row g-3" method='post' action='skills.php'>
                 <div class="col-md-12">
                   <div class="form-floating">
-                    <input type="text" name='url' class="form-control" id="floatingName" placeholder="project url">
-                    <label for="floatingName">PROJECT URL</label>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-floating">
-                    <input type="date" name='date' class="form-control" id="floatingEmail" placeholder="Your Email">
-                    <label for="floatingEmail">DATE</label>
+                    <input type="text" class="form-control" id="floatingName" name='title' placeholder="Your Name">
+                    <label for="floatingName">skills title</label>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-floating">
-                    <input type="text" name='title' class="form-control" id="floatingEmail" placeholder="Your Email">
-                    <label for="floatingEmail">TITLE</label>
+                    <input type="number" name='rate' class="form-control" id="floatingEmail" placeholder="Your rate %">
+                    <label for="floatingEmail">rate (%)</label>
                   </div>
                 </div>
-             
-                <div class="col-12">
-                  <div class="form-floating">
-                    <textarea class="form-control" name='des' placeholder="Description" id="floatingTextarea" style="height: 100px;"></textarea>
-                    <label for="floatingTextarea">DECRIPTION</label>
-                  </div>
-                </div>
-               
-                <div class="col-md-12">
-                  <div class="form-floating mb-3">
-                    <select class="form-select" name='category' id="floatingSelect" aria-label="State">
-                      <option value="filter-web" selected>web application</option>
-                      <option value="filter-card">desktop application</option>
-                      <option value="filter-app">app</option>
-                    </select>
-                    <label for="floatingSelect">category</label>
-                  </div>
-                </div>
-               
+          
                 <div class="text-center">
                   <button type="submit" name='go' class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>
@@ -156,7 +121,7 @@ description -->
 
   
                   <div class="card-body">
-                    <h5 class="card-title">PROJECT <span>| </span></h5>
+                    <h5 class="card-title">Messages <span>| </span></h5>
   
                 
 
@@ -167,9 +132,10 @@ description -->
                       <th scope="col">#</th>
                      
                       
-                      
-                      <th scope="col">URL</th>
-                     
+                      <th scope="col">NAMES</th>
+                      <th scope="col">EMAIL</th>
+                      <th scope="col">SUBJECT</th>
+                      <th scope="col">MESSAGE</th>
                       <th scope="col"  style="text-align:LEFT">Modify</th>
                     </tr>
                   </thead> 
@@ -178,7 +144,7 @@ description -->
                   <?php
                     include '../connection.php';
 	
-                    $sql = "SELECT * FROM project order by category asc";
+                    $sql = "SELECT * FROM messages";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -186,21 +152,15 @@ description -->
                       while($row = mysqli_fetch_array($result)) {
                        $i++;
                        ?>
-                       <!-- Full texts
-                       id	
-                       category	
-                       project_date	
-                       url	
-                       picture	 -->
-                       <!-- description	 -->
                           <tr>
+                          <!-- `id`, `names`, `email`, `subject`, `message` -->
                               <th scope="row"><?php echo $i; ?></th>
-                             
-                              <td><?php echo $row["url"];?></td>
-                             
-                              <!-- <td><a href="project.php?id=<?php //echo $row["0"]  ?>"><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#disabledAnimation"></i></a></td> -->
-                              <td> <a href="view_project.php?id=<?php echo $row["0"]  ?>"><button type="button" class="btn btn-outline-info btn-sm">view</button> </a></td>
-                              <td> <a href="delete_project.php?id=<?php echo $row["0"]  ?>"><button type="button" class="btn btn-outline-danger btn-sm">delete</button> </a></td>
+                              <td><?php echo $row["names"];?></td>
+                              <td><?php echo $row["email"];?></td>
+                              <td><?php echo $row["subject"];?></td>
+                              <td><?php echo $row["message"];?></td>
+     
+                              <td> <a href="delete_message.php?id=<?php echo $row["0"]  ?>"><button type="button" class="btn btn-outline-danger btn-sm">delete</button> </a></td>
 
                     </tr>
                        <?php
@@ -263,36 +223,38 @@ description -->
 include '../connection.php';
 
 @$go=$_POST["go"];
- @$url=$_POST["url"];
-@$des=$_POST["des"];
-@$title=$_POST["title"];
-@$date=$_POST["date"];
-@$category=$_POST["category"];
+echo @$skills=$_POST["title"];
+@$rate=$_POST["rate"];
+// @$email=$_POST["email"];
+// @$pass=$_POST["password"];
 
 
 
 if(isset($go))
 {
-  if($url!='' || $des!='' || $date!='' || $title!='' || $category!='')
+  if($skills!='' || $rate!='')
   {
 
 
+$sql = "SELECT * FROM skills where  title='$skills'";
+  $result = $conn->query($sql);
 
+  if ($result->num_rows ===0) 
+          {
   //echo '<script>alert("Welcome to Geeks for Geeks")</script>';
 
-    $sql = "INSERT INTO `project` (`id`, `category`, `project_date`, `url`, `title`, `description`) 
-    VALUES (NULL, '$category', '$date', '$url', '$title', '$des');";
+    $sql = "INSERT INTO `skills` (`id`, `title`, `rate`) VALUES (NULL, '$skills', '$rate');";
 
     if (mysqli_query($conn, $sql)) {
 
      
 
-      echo '<script>alert("project well added")</script>';
+      echo '<script>alert("skills well added")</script>';
 
 
 
 
-      echo "<script>window.location='./project.php'</script>";
+      echo "<script>window.location='./skills.php'</script>";
 
       
     } else {
@@ -300,7 +262,11 @@ if(isset($go))
     }
 
     mysqli_close($conn);
+}
+else{
 
+	echo '<script>alert("that skills already added before")</script>';
+	}
 
 }else{
   echo '<script>alert("you cant submit empty data")</script>';

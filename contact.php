@@ -1,3 +1,52 @@
+<?php
+
+include './connection.php';
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to select data from the table
+$sql = "SELECT * FROM content";
+
+// Execute the query
+$result = $conn->query($sql);
+
+// Check if any rows were returned
+if ($result->num_rows > 0) {
+    // Create an array to store the data
+    $data = array();
+
+    // Loop through the rows and store the data in the array
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+} else {
+    echo "No results found.";
+}
+
+// Close the connection
+$conn->close();
+
+// Access the data stored in the array
+foreach ($data as $row) {
+  $name = $row['name'];
+    $slogan = $row['slogan'];
+    $birthday = $row['birthday'];
+    $phone = $row['phone'];
+    $address = $row['address'];
+    $age = $row['age'];
+    $degree = $row['degree'];
+    $email = $row['email'];
+    $freelance = $row['Freelance'];
+    $about = $row['about'];
+    $ig = $row['ig'];
+    $facebook = $row['facebook'];
+    $linkedin = $row['linkdin'];
+    $twitter = $row['twiter'];
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,37 +87,10 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
+<?php
+include './includes/header.php';
 
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">Kelly</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a class="active" href="contact.html">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <div class="header-social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
-
-    </div>
-
-  </header><!-- End Header -->
-
+?>
   <main id="main">
 
     <!-- ======= Contact Section ======= -->
@@ -77,33 +99,40 @@
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>
+            
+          The following Google Map indicates my current location! My current location, as seen below, is <?php echo $address ?>
+          ! Other contact information is displayed below the map, and you can also reach out to me via text. Feel free to send me any ideas, 
+          partnership proposals, job offers, or messages! I'm open to staying in touch. Corrected version
+          </p>
         </div>
-
-        <div>
-          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+        <!-- 
+          Cedro@2312
+         -->
+          <iframe style="border:0; width: 100%; height: 270px;"
+          src="https://maps.google.com/maps?q=huye/ngoma mukoni&t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <div class="row mt-5">
 
-          <div class="col-lg-4">
+          <div class="col-lg-4" style="padding:1cm">
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p> <?php echo $address ?></p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p> <?php echo $email ?></p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p> <?php echo $phone ?></p>
               </div>
 
             </div>
@@ -112,8 +141,8 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
+            <form action="contact.php" method="post" style="padding:1cm">
+              <div class="row" >
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
@@ -127,12 +156,13 @@
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              <div class="my-3">
+              <!-- <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              </div> -->
+              <br>
+              <div class="text-center"><button type="submit" class='btn btn-info' name='go'>Send Message</button></div>
             </form>
 
           </div>
@@ -145,20 +175,10 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Kelly</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-  </footer><!-- End  Footer -->
+  <?php
+include './includes/footer.php';
+
+?>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -179,3 +199,53 @@
 </body>
 
 </html>
+<?php
+include './connection.php';
+
+@$go=$_POST["go"];
+
+@$name = $_POST['name'];
+@$email = $_POST['email'];
+@$subject = $_POST['subject'];
+@$message = $_POST['message'];
+
+
+if(isset($go))
+{
+  if($name!='' || $email!='' || $subject!='' || $message!='' )
+  {
+
+
+
+  //echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+
+    $sql = "INSERT INTO `messages` (`id`, `names`, `email`, `subject`, `message`) VALUES (NULL, '$name', '$email', '$subject', '$message');";
+
+    if (mysqli_query($conn, $sql)) {
+
+     
+
+      echo '<script>alert("skills well added")</script>';
+
+
+
+
+      echo "<script>window.location='./contact.php'</script>";
+
+      
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+
+
+
+}
+else{
+  echo '<script>alert("you cant submit empty data")</script>';
+}
+}
+
+   
+?>

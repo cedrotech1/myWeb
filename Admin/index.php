@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -54,7 +54,7 @@ include './includes/aside.php';
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
@@ -85,14 +85,27 @@ include './includes/aside.php';
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">messages <span>| Today</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>
+                        
+                      <?php include '../connection.php';
+                        $sql = "SELECT * FROM messages ORDER BY time ASC";
+                        $result = $conn->query($sql);
+                        
+                        if ($result) {
+                          $row_count = $result->num_rows;
+                          echo $row_count;
+                        } else {
+                          echo "Query failed: " . $conn->error;
+                        }
+                      ?>  
+                      </h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -120,14 +133,24 @@ include './includes/aside.php';
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                  <h5 class="card-title">projects <span>| This Month</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
+                      <h6>  <?php include '../connection.php';
+                        $sql = "SELECT * FROM project";
+                        $result = $conn->query($sql);
+                        
+                        if ($result) {
+                          $row_count = $result->num_rows;
+                          echo $row_count;
+                        } else {
+                          echo "Query failed: " . $conn->error;
+                        }
+                      ?></h6>
                       <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -156,14 +179,24 @@ include './includes/aside.php';
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Customers <span>| This Year</span></h5>
+                  <h5 class="card-title">skills <span>| This Year</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
+                      <h6>  <?php include '../connection.php';
+                        $sql = "SELECT * FROM skills ";
+                        $result = $conn->query($sql);
+                        
+                        if ($result) {
+                          $row_count = $result->num_rows;
+                          echo $row_count;
+                        } else {
+                          echo "Query failed: " . $conn->error;
+                        }
+                      ?></h6>
                       <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                     </div>
@@ -276,54 +309,56 @@ include './includes/aside.php';
                 <div class="card-body">
                   <h5 class="card-title">Recent Sales <span>| Today</span></h5>
 
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                 
+                  <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                     
+                      
+                      <th scope="col">NAMES</th>
+                      <th scope="col">EMAIL</th>
+                      <th scope="col">SUBJECT</th>
+                      <th scope="col">MESSAGE</th>
+                      <th scope="col"  style="text-align:LEFT">Modify</th>
+                    </tr>
+                  </thead> 
+                  <tbody>
+              
+                  <?php
+                    include '../connection.php';
+	
+                    $sql = "SELECT * FROM messages";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                     $i=0;
+                      while($row = mysqli_fetch_array($result)) {
+                       $i++;
+                       ?>
+                          <tr>
+                          <!-- `id`, `names`, `email`, `subject`, `message` -->
+                              <th scope="row"><?php echo $i; ?></th>
+                              <td><?php echo $row["names"];?></td>
+                              <td><?php echo $row["email"];?></td>
+                              <td><?php echo $row["subject"];?></td>
+                              <td><?php echo $row["message"];?></td>
+     
+                              <td> <a href="delete_message.php?id=<?php echo $row["0"]  ?>"><button type="button" class="btn btn-outline-danger btn-sm">delete</button> </a></td>
+
+                    </tr>
+                       <?php
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                  ?>
+                 
+               
+                  </tbody>
+                </table>
+
+
 
                 </div>
 
@@ -348,56 +383,60 @@ include './includes/aside.php';
                 </div>
 
                 <div class="card-body pb-0">
-                  <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                  <h5 class="card-title">projects <span>| Today</span></h5>
 
-                  <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                        <th scope="col">Preview</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Revenue</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                        <td>$46</td>
-                        <td class="fw-bold">98</td>
-                        <td>$4,508</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                        <td>$59</td>
-                        <td class="fw-bold">74</td>
-                        <td>$4,366</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                        <td>$32</td>
-                        <td class="fw-bold">63</td>
-                        <td>$2,016</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                        <td>$79</td>
-                        <td class="fw-bold">41</td>
-                        <td>$3,239</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                     
+                      
+                      
+                      <th scope="col">URL</th>
+                     
+                      <th scope="col"  style="text-align:LEFT">Modify</th>
+                    </tr>
+                  </thead> 
+                  <tbody>
+              
+                  <?php
+                    include '../connection.php';
+	
+                    $sql = "SELECT * FROM project order by category asc";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                     $i=0;
+                      while($row = mysqli_fetch_array($result)) {
+                       $i++;
+                       ?>
+                       <!-- Full texts
+                       id	
+                       category	
+                       project_date	
+                       url	
+                       picture	 -->
+                       <!-- description	 -->
+                          <tr>
+                              <th scope="row"><?php echo $i; ?></th>
+                             
+                              <td><?php echo $row["url"];?></td>
+                             
+                              <!-- <td><a href="project.php?id=<?php //echo $row["0"]  ?>"><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#disabledAnimation"></i></a></td> -->
+                              <td> <a href="view_project.php?id=<?php echo $row["0"]  ?>"><button type="button" class="btn btn-outline-info btn-sm">view</button> </a></td>
+                              <td> <a href="delete_project.php?id=<?php echo $row["0"]  ?>"><button type="button" class="btn btn-outline-danger btn-sm">delete</button> </a></td>
+
+                    </tr>
+                       <?php
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                  ?>
+                 
+               
+                  </tbody>
+                </table>
 
                 </div>
 
@@ -426,57 +465,96 @@ include './includes/aside.php';
             </div>
 
             <div class="card-body">
-              <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+              <h5 class="card-title">Recent messages <span>| Today</span></h5>
 
               <div class="activity">
 
-                <div class="activity-item d-flex">
+
+
+              <?php
+                    include '../connection.php';
+	
+                    $sql = "SELECT * FROM messages ORDER by time asc limit 5";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                     $i=0;
+                      while($row = mysqli_fetch_array($result)) {
+                       $i++;
+                        $id=$row['id'];
+                        $message=$row['message'];
+                        $name=$row['names'];
+                        $sub=$row['subject'];
+
+                      
+                        // Get the current time as a Unix timestamp
+                        $currentTimestamp = time();
+
+                        // Assuming you have retrieved the timestamp from the database
+                        $databaseTimestamp = strtotime($row['time']); // Replace $row['timestamp'] with your actual timestamp value
+
+                        // Calculate the time difference in seconds
+                        $timeDifference = $currentTimestamp - $databaseTimestamp;
+
+                        // Calculate the time ago
+                        if ($timeDifference < 60) {
+                            $timeAgo = $timeDifference . " seconds ago";
+                        } elseif ($timeDifference < 3600) {
+                            $timeAgo = floor($timeDifference / 60) . " minutes ago";
+                        } elseif ($timeDifference < 86400) {
+                            $timeAgo = floor($timeDifference / 3600) . " hours ago";
+                        } else {
+                            $timeAgo = floor($timeDifference / 86400) . " days ago";
+                        }
+
+                        // Output the calculated time ago
+                        $timeAgo;
+
+
+                       ?>
+            
+                        <!-- <img src="assets/img/img.png" alt="" class="rounded-circle">
+                        <div>
+                          <h4><?php //echo $name ?></h4>
+                          <p><?php //echo $message ?></p>
+                          <p><?php //echo $timeAgo ?></p>
+                        </div> -->
+                        <div class="activity-item d-flex">
                   <div class="activite-label">32 min</div>
                   <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                   <div class="activity-content">
-                    Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                  <?php echo $message ?>
                   </div>
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">56 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                  <div class="activity-content">
-                    Voluptatem blanditiis blanditiis eveniet
-                  </div>
-                </div><!-- End activity item-->
+                  
+                       <?php
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                  ?>
+      
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 hrs</div>
-                  <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                  <div class="activity-content">
-                    Voluptates corrupti molestias voluptatem
-                  </div>
-                </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">1 day</div>
-                  <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                  <div class="activity-content">
-                    Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                  </div>
-                </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 days</div>
-                  <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                  <div class="activity-content">
-                    Est sit eum reiciendis exercitationem
-                  </div>
-                </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">4 weeks</div>
-                  <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                  <div class="activity-content">
-                    Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                  </div>
-                </div><!-- End activity item-->
+
+
+
+
+
+
+
+
+
+
+
+               
+              
+                
+
+               
 
               </div>
 
@@ -609,7 +687,7 @@ include './includes/aside.php';
                       data: [{
                           value: 1048,
                           name: 'Search Engine'
-                        },
+                        }, 
                         {
                           value: 735,
                           name: 'Direct'
@@ -696,19 +774,12 @@ include './includes/aside.php';
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
+
+  <?php
+        
+        include './includes/footer.php';
+?>
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

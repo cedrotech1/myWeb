@@ -5,6 +5,12 @@ $username = "root";
 $password = "";
 $db_name="mmyweb";
 
+
+// $servername = "localhost";
+// $username = "pudkwzem_mmyweb";
+// $password = "Cedro@2312";
+// $db_name="pudkwzem_mmyweb";
+
 // Create connection
 $conn = new mysqli($servername, $username,$password,$db_name);
 
